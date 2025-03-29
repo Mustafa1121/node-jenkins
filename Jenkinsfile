@@ -4,9 +4,10 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Mustafa1121/node-jenkins.git'
+                git branch: 'main', url: 'https://github.com/Mustafa1121/node-jenkins.git'
             }
         }
+    
         
         stage('Install Dependencies') {
             steps {
