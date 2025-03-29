@@ -9,22 +9,18 @@ pipeline {
         }
         
         stage('Install Dependencies') {
-            steps {
-                script {
-                    try {
-                        // Check if node_modules exists before attempting to delete
-                        bat 'if exist node_modules rmdir /S /Q node_modules'
-                        bat 'del /Q package-lock.json'
-
-                        // Run npm install
-                        powershell 'npm install'
-                    } catch (Exception e) {
-                        currentBuild.result = 'FAILURE'
-                        throw e
-                    }
-                }
-            }
+    steps {
+        script {
+            // Forcefully remove node_modules and package-lock.json
+            bat 'if exist node_modules rmdir /S /Q node_modules'
+            bat 'if exist package-lock.json del /F /Q package-lock.json'
+            
+            // Install dependencies
+            bat 'npm install --force'
         }
+    }
+}
+
 
         stage('Run Tests') {
             steps {
