@@ -16,7 +16,7 @@ pipeline {
             bat 'if exist package-lock.json del /F /Q package-lock.json'
             
             // Install dependencies
-            bat 'npm install --force'
+            powershell 'npm install --force'
         }
     }
 }
