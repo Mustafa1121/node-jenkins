@@ -11,19 +11,19 @@ pipeline {
         
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                powershell 'npm install'
             }
         }
         
         stage('Run Tests') {
             steps {
-                sh 'npm test'
+                powershell 'npm test'
             }
         }
         
         stage('Build') {
             steps {
-                sh 'echo "Build completed!"'
+                powershell 'echo "Build completed!"'
             }
         }
     }
