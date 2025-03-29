@@ -12,8 +12,9 @@ pipeline {
     steps {
         script {
             // Forcefully remove node_modules and package-lock.json
-            bat 'if exist node_modules rmdir /S /Q node_modules'
-            bat 'if exist package-lock.json del /F /Q package-lock.json'
+            powershell 'Remove-Item -Recurse -Force node_modules'
+            powershell 'Remove-Item -Force package-lock.json'
+
             
             // Install dependencies
             powershell 'npm install --force'
